@@ -1,6 +1,9 @@
 ﻿using SQLite;
 using WS.Campaigns;
-using WS.Campaigns.Characters;
+using WS.Campaigns.Characters.Action;
+using WS.Campaigns.Characters.BonusAction;
+using WS.Campaigns.Characters.Character;
+using WS.Campaigns.Characters.Stat;
 using WS.Campaigns.Items;
 using WS.Campaigns.Zones;
 
@@ -27,10 +30,10 @@ namespace WS
             await conn.CreateTableAsync<Zone>();
             await conn.CreateTableAsync<Campaigns.Zones.Location>();
             await conn.CreateTableAsync<Campaigns.Zones.Map>();
-            await conn.CreateTableAsync<Character>();
-            await conn.CreateTableAsync<Stat>();
-            await conn.CreateTableAsync<Campaigns.Characters.Action>();
-            await conn.CreateTableAsync<BonusAction>();
+            await conn.CreateTableAsync<CharacterModel>();
+            await conn.CreateTableAsync<StatModel>();
+            await conn.CreateTableAsync<ActionModel>();
+            await conn.CreateTableAsync<BonusActionModel>();
             await conn.CreateTableAsync<Armour>();
             await conn.CreateTableAsync<Consumable>();
             await conn.CreateTableAsync<Tool>();
@@ -252,7 +255,7 @@ namespace WS
                     throw new Exception("A valid character name must be entered.");
 
                 result = await conn.InsertAsync(
-                    new Character { Identifiers = new Identifiers() { Name = name, Description = description } });
+                    new CharacterModel { Identifiers = new Identifiers() { Name = name, Description = description } });
 
                 StatusMessage = string.Format("{0} record(s) added (Name: {1})", result, name);
             }
@@ -265,19 +268,19 @@ namespace WS
         /*
          * Get a list of all characters.
          */
-        public async Task<List<Character>> GetAllCharacters()
+        public async Task<List<CharacterModel>> GetAllCharacters()
         {
             try
             {
                 await Init();
-                return await conn.Table<Character>().ToListAsync();
+                return await conn.Table<CharacterModel>().ToListAsync();
             }
             catch (Exception ex)
             {
                 StatusMessage = string.Format("Data retrieval failed. {0}", ex.Message);
             }
 
-            return new List<Character>();
+            return new List<CharacterModel>();
         }
 
         /*
@@ -290,7 +293,7 @@ namespace WS
             {
                 await Init();
 
-                Character character = await conn.Table<Character>().Where(i => i.Id == id).FirstOrDefaultAsync();
+                CharacterModel character = await conn.Table<CharacterModel>().Where(i => i.Id == id).FirstOrDefaultAsync();
                 string name = character.GetName();
 
                 result = await conn.DeleteAsync(character);
@@ -317,7 +320,7 @@ namespace WS
                     throw new Exception("A valid stat name must be entered.");
 
                 result = await conn.InsertAsync(
-                    new Stat { Identifiers = new Identifiers() { Name = name, Description = description } });
+                    new StatModel { Identifiers = new Identifiers() { Name = name, Description = description } });
 
                 StatusMessage = string.Format("{0} record(s) added (Name: {1})", result, name);
             }
@@ -330,19 +333,19 @@ namespace WS
         /*
          * Get a list of all stats.
          */
-        public async Task<List<Stat>> GetAllStats()
+        public async Task<List<StatModel>> GetAllStats()
         {
             try
             {
                 await Init();
-                return await conn.Table<Stat>().ToListAsync();
+                return await conn.Table<StatModel>().ToListAsync();
             }
             catch (Exception ex)
             {
                 StatusMessage = string.Format("Data retrieval failed. {0}", ex.Message);
             }
 
-            return new List<Stat>();
+            return new List<StatModel>();
         }
 
         /*
@@ -355,7 +358,7 @@ namespace WS
             {
                 await Init();
 
-                Stat stat = await conn.Table<Stat>().Where(i => i.Id == id).FirstOrDefaultAsync();
+                StatModel stat = await conn.Table<StatModel>().Where(i => i.Id == id).FirstOrDefaultAsync();
                 string name = stat.GetName();
 
                 result = await conn.DeleteAsync(stat);
@@ -382,7 +385,7 @@ namespace WS
                     throw new Exception("A valid action name must be entered.");
 
                 result = await conn.InsertAsync(
-                    new Campaigns.Characters.Action { Identifiers = new Identifiers() { Name = name, Description = description } });
+                    new Campaigns.Characters.ActionModel { Identifiers = new Identifiers() { Name = name, Description = description } });
 
                 StatusMessage = string.Format("{0} record(s) added (Name: {1})", result, name);
             }
@@ -395,19 +398,19 @@ namespace WS
         /*
          * Get a list of all actions.
          */
-        public async Task<List<Campaigns.Characters.Action>> GetAllActions()
+        public async Task<List<ActionModel>> GetAllActions()
         {
             try
             {
                 await Init();
-                return await conn.Table<Campaigns.Characters.Action>().ToListAsync();
+                return await conn.Table<ActionModel>().ToListAsync();
             }
             catch (Exception ex)
             {
                 StatusMessage = string.Format("Data retrieval failed. {0}", ex.Message);
             }
 
-            return new List<Campaigns.Characters.Action>();
+            return new List<ActionModel>();
         }
 
         /*
@@ -420,7 +423,7 @@ namespace WS
             {
                 await Init();
 
-                Campaigns.Characters.Action action = await conn.Table<Campaigns.Characters.Action>().Where(i => i.Id == id).FirstOrDefaultAsync();
+                ActionModel action = await conn.Table<ActionModel>().Where(i => i.Id == id).FirstOrDefaultAsync();
                 string name = action.GetName();
 
                 result = await conn.DeleteAsync(action);
@@ -447,7 +450,7 @@ namespace WS
                     throw new Exception("A valid bonus action name must be entered.");
 
                 result = await conn.InsertAsync(
-                    new BonusAction { Identifiers = new Identifiers() { Name = name, Description = description } });
+                    new BonusActionModel { Identifiers = new Identifiers() { Name = name, Description = description } });
 
                 StatusMessage = string.Format("{0} record(s) added (Name: {1})", result, name);
             }
@@ -460,19 +463,19 @@ namespace WS
         /*
          * Get a list of all bonus actions.
          */
-        public async Task<List<BonusAction>> GetAllBonusActions()
+        public async Task<List<BonusActionModel>> GetAllBonusActions()
         {
             try
             {
                 await Init();
-                return await conn.Table<BonusAction>().ToListAsync();
+                return await conn.Table<BonusActionModel>().ToListAsync();
             }
             catch (Exception ex)
             {
                 StatusMessage = string.Format("Data retrieval failed. {0}", ex.Message);
             }
 
-            return new List<BonusAction>();
+            return new List<BonusActionModel>();
         }
 
         /*
@@ -485,7 +488,7 @@ namespace WS
             {
                 await Init();
 
-                BonusAction bonusAction = await conn.Table<BonusAction>().Where(i => i.Id == id).FirstOrDefaultAsync();
+                BonusActionModel bonusAction = await conn.Table<BonusActionModel>().Where(i => i.Id == id).FirstOrDefaultAsync();
                 string name = bonusAction.GetName();
 
                 result = await conn.DeleteAsync(bonusAction);

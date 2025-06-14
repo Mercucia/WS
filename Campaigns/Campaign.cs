@@ -1,5 +1,5 @@
 ﻿using SQLite;
-using WS.Campaigns.Characters;
+using WS.Campaigns.Characters.Character;
 using WS.Campaigns.Items;
 using WS.Campaigns.Zones;
 
@@ -15,7 +15,7 @@ namespace WS.Campaigns
         public int Id { get; set; }
         public Identifiers Identifiers { get; set; }
         public List<Zone> Zones { get; set; }
-        public List<Character> Characters { get; set; }
+        public List<CharacterModel> Characters { get; set; }
         public List<Item> Items { get; set; }
 
         public string GetName()

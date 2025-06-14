@@ -1,12 +1,12 @@
 ﻿using SQLite;
 
-namespace WS.Campaigns.Characters
+namespace WS.Campaigns.Characters.Action
 {
     /*
      * Class for storing an action.
      */
     [Table("action")]
-    public class Action
+    public class ActionModel
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }

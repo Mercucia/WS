@@ -1,12 +1,12 @@
 ﻿using SQLite;
 
-namespace WS.Campaigns.Characters
+namespace WS.Campaigns.Characters.Stat
 {
     /*
-     * Class for storing a bonus action.
+     * Class for storing a stat.
      */
-    [Table("bonusAction")]
-    public class BonusAction
+    [Table("stat")]
+    public class StatModel
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
@@ -17,4 +17,4 @@ namespace WS.Campaigns.Characters
             return Identifiers.Name;
         }
     }
-}
+} 

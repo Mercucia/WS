@@ -1,13 +1,13 @@
 ﻿using SQLite;
 using WS.Campaigns.Items;
 
-namespace WS.Campaigns.Characters
+namespace WS.Campaigns.Characters.Inventory
 {
     /*
      * Class for storing an inventory.
      */
     [Table("inventory")]
-    public class Inventory
+    public class InventoryModel
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
