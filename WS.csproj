@@ -67,8 +67,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Campaigns\Items\Pages\" />
-	  <Folder Include="Campaigns\Zones\Pages\" />
 	  <Folder Include="Campaign\Actions\M\" />
 	  <Folder Include="Campaign\Actions\VM\" />
 	  <Folder Include="Campaign\Actions\V\" />
