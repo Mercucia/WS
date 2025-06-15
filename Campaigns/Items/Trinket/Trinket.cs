@@ -1,12 +1,12 @@
 ﻿using SQLite;
 
-namespace WS.Campaigns.Items
+namespace WS.Campaigns.Items.Trinket
 {
     /*
-     * Class for storing a consumable.
+     * Class for storing a trinket.
      */
-    [Table("consumable")]
-    public class Consumable : Item
+    [Table("trinket")]
+    public class Trinket : Item
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }

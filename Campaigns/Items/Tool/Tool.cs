@@ -1,12 +1,12 @@
 ﻿using SQLite;
 
-namespace WS.Campaigns.Items
+namespace WS.Campaigns.Items.Tool
 {
     /*
-     * Class for storing a weapon.
+     * Class for storing a tool.
      */
-    [Table("weapon")]
-    public class Weapon : Item
+    [Table("tool")]
+    public class Tool : Item
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
