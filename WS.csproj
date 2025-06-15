@@ -67,17 +67,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Campaigns\Characters\BonusAction\Pages\" />
-	  <Folder Include="Campaigns\Characters\Character\Pages\" />
-	  <Folder Include="Campaigns\Characters\Inventory\Pages\" />
-	  <Folder Include="Campaigns\Characters\Stat\Pages\" />
-	  <Folder Include="Campaigns\Items\Armour\Pages\" />
-	  <Folder Include="Campaigns\Items\Consumable\Pages\" />
-	  <Folder Include="Campaigns\Items\Tool\Pages\" />
-	  <Folder Include="Campaigns\Items\Trinket\Pages\" />
-	  <Folder Include="Campaigns\Items\Weapon\Pages\" />
-	  <Folder Include="Campaigns\Zones\Location\Pages\" />
-	  <Folder Include="Campaigns\Zones\Zone\Pages\" />
 	  <Folder Include="Campaign\Actions\M\" />
 	  <Folder Include="Campaign\Actions\VM\" />
 	  <Folder Include="Campaign\Actions\V\" />
@@ -110,6 +99,72 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Campaigns\Characters\Action\Pages\ActionView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Characters\BonusAction\Pages\BonusActionListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Characters\BonusAction\Pages\BonusActionView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Characters\Character\Pages\CharacterListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Characters\Character\Pages\CharacterView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Characters\Inventory\Pages\InventoryListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Characters\Inventory\Pages\InventoryView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Characters\Stat\Pages\StatListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Characters\Stat\Pages\StatView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Items\Armour\Pages\ArmourListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Items\Armour\Pages\ArmourView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Items\Consumable\Pages\ConsumableListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Items\Consumable\Pages\ConsumableView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Items\Tool\Pages\ToolListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Items\Tool\Pages\ToolView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Items\Trinket\Pages\TrinketListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Items\Trinket\Pages\TrinketView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Items\Weapon\Pages\WeaponListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Items\Weapon\Pages\WeaponView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Zones\Location\Pages\LocationListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Zones\Location\Pages\LocationView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Zones\Zone\Pages\ZoneListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Zones\Zone\Pages\ZoneView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
