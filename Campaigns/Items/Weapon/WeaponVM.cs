@@ -1,19 +1,23 @@
-﻿using SQLite;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace WS.Campaigns.Items.Weapon
 {
     /*
      * Class for storing a weapon.
      */
-    [Table("weapon")]
-    public class Weapon : Item
+    public class WeaponVM : ObservableObject
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        private int _id;
 
-        public string GetName()
+        public int ID
         {
-            return Identifiers.Name;
+            get => _id;
+            set => SetProperty(ref _id, value);
+        }
+
+        public WeaponVM(WeaponModel weapon)
+        {
+            _id = weapon.Id;
         }
     }
 }

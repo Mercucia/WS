@@ -3,7 +3,7 @@
 namespace WS.Campaigns.Items.Consumable
 {
     /*
-     * Class for storing a consumable.
+     * Consumable model.
      */
     [Table("consumable")]
     public class ConsumableModel : Item

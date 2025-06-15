@@ -3,7 +3,7 @@
 namespace WS.Campaigns.Items.Tool
 {
     /*
-     * Class for storing a tool.
+     * Tool model.
      */
     [Table("tool")]
     public class ToolModel : Item

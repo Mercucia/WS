@@ -67,6 +67,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Campaigns\Characters\BonusAction\Pages\" />
+	  <Folder Include="Campaigns\Characters\Character\Pages\" />
+	  <Folder Include="Campaigns\Characters\Inventory\Pages\" />
+	  <Folder Include="Campaigns\Characters\Stat\Pages\" />
+	  <Folder Include="Campaigns\Items\Armour\Pages\" />
+	  <Folder Include="Campaigns\Items\Consumable\Pages\" />
+	  <Folder Include="Campaigns\Items\Tool\Pages\" />
+	  <Folder Include="Campaigns\Items\Trinket\Pages\" />
+	  <Folder Include="Campaigns\Items\Weapon\Pages\" />
+	  <Folder Include="Campaigns\Zones\Location\Pages\" />
+	  <Folder Include="Campaigns\Zones\Zone\Pages\" />
 	  <Folder Include="Campaign\Actions\M\" />
 	  <Folder Include="Campaign\Actions\VM\" />
 	  <Folder Include="Campaign\Actions\V\" />
@@ -89,7 +100,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Campaigns\Characters\Action\ActionView.xaml">
+	  <Compile Update="Campaigns\Characters\Action\Pages\ActionListView.xaml.cs">
+	    <DependentUpon>ActionListView.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Campaigns\Characters\Action\Pages\ActionListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Campaigns\Characters\Action\Pages\ActionView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

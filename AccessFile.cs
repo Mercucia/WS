@@ -1,4 +1,4 @@
-﻿namespace DAR
+﻿namespace WS
 {
     public class AccessFile
     {

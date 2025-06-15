@@ -9,48 +9,8 @@ using WS.Campaigns.Items.Consumable;
 using WS.Campaigns.Items.Tool;
 using WS.Campaigns.Items.Trinket;
 using WS.Campaigns.Items.Weapon;
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-maccatalyst)', Before:
-=======
 using WS.Campaigns.Zones.Location;
->>>>>>> After
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-windows10.0.19041.0)', Before:
-=======
-using WS.Campaigns.Zones.Location;
-using WS.Campaigns.Zones.Location.Location;
-using WS.Campaigns.Zones.Location.Location.Location;
->>>>>>> After
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-android)', Before:
-=======
-using WS.Campaigns.Zones.Location;
-using WS.Campaigns.Zones.Location.Location;
->>>>>>> After
-using WS.Campaigns.Zones.Location.LocationModel;
-using WS.Campaigns.Zones.Location.LocationModel.Location;
-using WS.Campaigns.Zones.Location.LocationModel.Location.Location;
-
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-maccatalyst)', Before:
-=======
 using WS.Campaigns.Zones.Zone;
->>>>>>> After
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-android)', Before:
-=======
-using WS.Campaigns.Zones.Zone;
-using WS.Campaigns.Zones.Zone.Zone;
->>>>>>> After
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-windows10.0.19041.0)', Before:
-=======
-using WS.Campaigns.Zones.Zone;
-using WS.Campaigns.Zones.Zone.Zone;
-using WS.Campaigns.Zones.Zone.Zone.Zone;
->>>>>>> After
-using WS.Campaigns.Zones.Zone;
-using WS.Campaigns.Zones.Zone.ZoneModel;
-using WS.Campaigns.Zones.Zone.ZoneModel.Zone;
-using WS.Campaigns.Zones.Zone.ZoneModel.Zone.Zone;
 
 namespace WS
 {
@@ -71,33 +31,9 @@ namespace WS
                 return;
 
             conn = new SQLiteAsyncConnection(_dbPath);
-            await conn.CreateTableAsync<Campaign>();
+            await conn.CreateTableAsync<CampaignModel>();
             await conn.CreateTableAsync<ZoneModel>();
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-maccatalyst)', Before:
-            await conn.CreateTableAsync<Campaigns.Zones.Location>();
-            await conn.CreateTableAsync<Campaigns.Zones.Map>();
-=======
-            await conn.CreateTableAsync<Campaigns.Zones.Location.Location>();
-            await conn.CreateTableAsync<Campaigns.Zones.Map>();
->>>>>>> After
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-windows10.0.19041.0)', Before:
-            await conn.CreateTableAsync<Campaigns.Zones.Location>();
-            await conn.CreateTableAsync<Campaigns.Zones.Map>();
-=======
-            await conn.CreateTableAsync<Campaigns.Zones.Location.Location.Location.Location>();
-            await conn.CreateTableAsync<Campaigns.Zones.Map>();
->>>>>>> After
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-android)', Before:
-            await conn.CreateTableAsync<Campaigns.Zones.Location>();
-            await conn.CreateTableAsync<Campaigns.Zones.Map>();
-=======
-            await conn.CreateTableAsync<Campaigns.Zones.Location.Location.Location>();
-            await conn.CreateTableAsync<Campaigns.Zones.Map>();
->>>>>>> After
-            await conn.CreateTableAsync<Campaigns.Zones.Location.LocationModel.Location.Location.Location>();
+            await conn.CreateTableAsync<LocationModel>();
             await conn.CreateTableAsync<Campaigns.Zones.Map>();
             await conn.CreateTableAsync<CharacterModel>();
             await conn.CreateTableAsync<StatModel>();
@@ -129,7 +65,7 @@ namespace WS
                     throw new Exception("A valid campaign name must be entered.");
 
                 result = await conn.InsertAsync(
-                    new Campaign { Identifiers = new Identifiers() { Name = name, Description = description} });
+                    new CampaignModel { Identifiers = new Identifiers() { Name = name, Description = description} });
 
                 StatusMessage = string.Format("{0} record(s) added (Name: {1})", result, name);
             }
@@ -142,19 +78,19 @@ namespace WS
         /*
          * Get a list of all campaigns.
          */
-        public async Task<List<Campaign>> GetAllCampaigns()
+        public async Task<List<CampaignModel>> GetAllCampaigns()
         {
             try
             {
                 await Init();
-                return await conn.Table<Campaign>().ToListAsync();
+                return await conn.Table<CampaignModel>().ToListAsync();
             }
             catch (Exception ex)
             {
                 StatusMessage = string.Format("Data retrieval failed. {0}", ex.Message);
             }
 
-            return new List<Campaign>();
+            return new List<CampaignModel>();
         }
 
         /*
@@ -167,7 +103,7 @@ namespace WS
             {
                 await Init();
 
-                Campaign campaign = await conn.Table<Campaign>().Where(i => i.Id == id).FirstOrDefaultAsync();
+                CampaignModel campaign = await conn.Table<CampaignModel>().Where(i => i.Id == id).FirstOrDefaultAsync();
                 string name = campaign.GetName();
 
                 result = await conn.DeleteAsync(campaign);
@@ -181,7 +117,7 @@ namespace WS
         }
 
         /*
-         * Add a new campaign.
+         * Add a new zone.
          */
         public async Task AddNewZone(string name, string description = "")
         {
@@ -259,7 +195,7 @@ namespace WS
                     throw new Exception("A valid location name must be entered.");
 
                 result = await conn.InsertAsync(
-                    new Campaigns.Zones.Location { Identifiers = new Identifiers() { Name = name, Description = description } });
+                    new LocationModel { Identifiers = new Identifiers() { Name = name, Description = description } });
 
                 StatusMessage = string.Format("{0} record(s) added (Name: {1})", result, name);
             }
@@ -272,91 +208,19 @@ namespace WS
         /*
          * Get a list of all locations.
          */
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-windows10.0.19041.0)', Before:
-        public async Task<List<Campaigns.Zones.Location>> GetAllLocations()
-        {
-=======
-        public async Task<List<Campaigns.Zones.Location.Location.Location.Location>> GetAllLocations()
-        {
->>>>>>> After
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-android)', Before:
-        public async Task<List<Campaigns.Zones.Location>> GetAllLocations()
-        {
-=======
-        public async Task<List<Campaigns.Zones.Location.Location.Location>> GetAllLocations()
-        {
->>>>>>> After
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-maccatalyst)', Before:
-        public async Task<List<Campaigns.Zones.Location>> GetAllLocations()
-        {
-=======
-        public async Task<List<Campaigns.Zones.Location.Location>> GetAllLocations()
-        {
->>>>>>> After
-        public async Task<List<Campaigns.Zones.Location.LocationModel.Location.Location.Location>> GetAllLocations()
+        public async Task<List<LocationModel>> GetAllLocations()
         {
             try
             {
                 await Init();
 
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-android)', Before:
-                return await conn.Table<Campaigns.Zones.Location>().ToListAsync();
-            }
-=======
-                return await conn.Table<Campaigns.Zones.Location.Location.Location>().ToListAsync();
-            }
->>>>>>> After
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-maccatalyst)', Before:
-                return await conn.Table<Campaigns.Zones.Location>().ToListAsync();
-            }
-=======
-                return await conn.Table<Campaigns.Zones.Location.Location>().ToListAsync();
-            }
->>>>>>> After
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-windows10.0.19041.0)', Before:
-                return await conn.Table<Campaigns.Zones.Location>().ToListAsync();
-            }
-=======
-                return await conn.Table<Campaigns.Zones.Location.Location.Location.Location>().ToListAsync();
-            }
->>>>>>> After
-                return await conn.Table<Campaigns.Zones.Location.Location.Location.Location.Location>().ToListAsync();
+                return await conn.Table<LocationModel>().ToListAsync();
             }
             catch (Exception ex)
             {
                 StatusMessage = string.Format("Data retrieval failed. {0}", ex.Message);
             }
-
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-windows10.0.19041.0)', Before:
-            return new List<Campaigns.Zones.Location>();
-        }
-=======
-            return new List<Campaigns.Zones.Location.Location.Location.Location>();
-        }
->>>>>>> After
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-android)', Before:
-            return new List<Campaigns.Zones.Location>();
-        }
-=======
-            return new List<Campaigns.Zones.Location.Location.Location>();
-        }
->>>>>>> After
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-maccatalyst)', Before:
-            return new List<Campaigns.Zones.Location>();
-        }
-=======
-            return new List<Campaigns.Zones.Location.Location>();
-        }
->>>>>>> After
-            return new List<Campaigns.Zones.Location.Location.Location.Location.Location>();
+            return new List<LocationModel>();
         }
 
         /*
@@ -369,31 +233,7 @@ namespace WS
             {
                 await Init();
 
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-android)', Before:
-                Campaigns.Zones.Location location = await conn.Table<Campaigns.Zones.Location>().Where(i => i.Id == id).FirstOrDefaultAsync();
-                string name = location.GetName();
-=======
-                Campaigns.Zones.Location.Location.Location location = await conn.Table<Campaigns.Zones.Location.Location.Location>().Where(i => i.Id == id).FirstOrDefaultAsync();
-                string name = location.GetName();
->>>>>>> After
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-maccatalyst)', Before:
-                Campaigns.Zones.Location location = await conn.Table<Campaigns.Zones.Location>().Where(i => i.Id == id).FirstOrDefaultAsync();
-                string name = location.GetName();
-=======
-                Campaigns.Zones.Location.Location location = await conn.Table<Campaigns.Zones.Location.Location>().Where(i => i.Id == id).FirstOrDefaultAsync();
-                string name = location.GetName();
->>>>>>> After
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-windows10.0.19041.0)', Before:
-                Campaigns.Zones.Location location = await conn.Table<Campaigns.Zones.Location>().Where(i => i.Id == id).FirstOrDefaultAsync();
-                string name = location.GetName();
-=======
-                Campaigns.Zones.Location.Location.Location.Location location = await conn.Table<Campaigns.Zones.Location.Location.Location.Location>().Where(i => i.Id == id).FirstOrDefaultAsync();
-                string name = location.GetName();
->>>>>>> After
-                Campaigns.Zones.Location.Location.Location.Location.Location location = await conn.Table<Campaigns.Zones.Location.Location.Location.Location.Location>().Where(i => i.Id == id).FirstOrDefaultAsync();
+                LocationModel location = await conn.Table<LocationModel>().Where(i => i.Id == id).FirstOrDefaultAsync();
                 string name = location.GetName();
 
                 result = await conn.DeleteAsync(location);

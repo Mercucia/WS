@@ -3,7 +3,7 @@
 namespace WS.Campaigns.Items.Trinket
 {
     /*
-     * Class for storing a trinket.
+     * Trinket model.
      */
     [Table("trinket")]
     public class TrinketModel : Item

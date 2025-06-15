@@ -1,19 +1,23 @@
-﻿using SQLite;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace WS.Campaigns.Items.Tool
 {
     /*
-     * Class for storing a tool.
+     * Tool view model.
      */
-    [Table("tool")]
-    public class Tool : Item
+    public class ToolVM : ObservableObject
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        private int _id;
 
-        public string GetName()
+        public int ID
         {
-            return Identifiers.Name;
+            get => _id;
+            set => SetProperty(ref _id, value);
+        }
+
+        public ToolVM(ToolModel tool)
+        {
+            _id = tool.Id;
         }
     }
 }

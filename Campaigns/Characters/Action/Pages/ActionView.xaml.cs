@@ -1,4 +1,4 @@
-namespace WS.Campaigns.Characters.Action;
+namespace WS.Campaigns.Characters.Action.Pages;
 
 public partial class ActionView : ContentPage
 {

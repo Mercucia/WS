@@ -1,19 +1,23 @@
-﻿using SQLite;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace WS.Campaigns.Items.Trinket
 {
     /*
-     * Class for storing a trinket.
+     * Trinket view model.
      */
-    [Table("trinket")]
-    public class Trinket : Item
+    public class TrinketVM : ObservableObject
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        private int _id;
 
-        public string GetName()
+        public int ID
         {
-            return Identifiers.Name;
+            get => _id;
+            set => SetProperty(ref _id, value);
+        }
+
+        public TrinketVM(TrinketModel trinket)
+        {
+            _id = trinket.Id;
         }
     }
 }

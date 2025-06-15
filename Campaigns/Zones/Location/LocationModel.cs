@@ -3,7 +3,7 @@
 namespace WS.Campaigns.Zones.Location
 {
     /*
-     * Class for storing a location.
+     * Location model.
      */
     [Table("location")]
     public class LocationModel

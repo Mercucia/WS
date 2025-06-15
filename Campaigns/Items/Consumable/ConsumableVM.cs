@@ -1,19 +1,23 @@
-﻿using SQLite;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace WS.Campaigns.Items.Consumable
 {
     /*
-     * Class for storing a consumable.
+     * Consumable view model.
      */
-    [Table("consumable")]
-    public class Consumable : Item
+    public class ConsumableVM : ObservableObject
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        private int _id;
 
-        public string GetName()
+        public int ID
         {
-            return Identifiers.Name;
+            get => _id;
+            set => SetProperty(ref _id, value);
+        }
+
+        public ConsumableVM(ConsumableModel consumable)
+        {
+            _id = consumable.Id;
         }
     }
 }

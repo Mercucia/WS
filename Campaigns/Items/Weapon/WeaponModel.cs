@@ -3,7 +3,7 @@
 namespace WS.Campaigns.Items.Weapon
 {
     /*
-     * Class for storing a weapon.
+     * Weapon model.
      */
     [Table("weapon")]
     public class WeaponModel : Item

@@ -1,42 +1,40 @@
-﻿using SQLite;
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-maccatalyst)', Before:
-=======
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using WS.Campaigns.Zones.Location;
->>>>>>> After
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-android)', Before:
-=======
-using WS.Campaigns.Zones.Location;
-using WS.Campaigns.Zones.Location.Location;
->>>>>>> After
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-windows10.0.19041.0)', Before:
-=======
-using WS.Campaigns.Zones.Location;
-using WS.Campaigns.Zones.Location.Location;
-using WS.Campaigns.Zones.Location.Location.Location;
->>>>>>> After
-using WS.Campaigns.Zones.Location.LocationModel;
-using WS.Campaigns.Zones.Location.LocationModel.Location;
-using WS.Campaigns.Zones.Location.LocationModel.Location.Location;
 
 namespace WS.Campaigns.Zones.Zone
 {
     /*
-     * Class for storing a Zone.
+     * Zone view model.
      */
-    [Table("zone")]
-    public class ZoneModel
+    public class ZoneVM : ObservableObject
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-        public Identifiers Identifiers { get; set; }
-        public List<Location> Locations { get; set; }
+        private int _id;
+        private Identifiers _identifiers;
+        private List<LocationVM> _locations;
 
-        public string GetName()
+        public int ID
         {
-            return Identifiers.Name;
+            get => _id;
+            set => SetProperty(ref _id, value);
+        }
+
+        public Identifiers Identifiers
+        {
+            get => _identifiers;
+            set => SetProperty(ref _identifiers, value);
+        }
+
+        public List<LocationVM> Locations
+        {
+            get => _locations;
+            set => SetProperty(ref _locations, value);
+        }
+
+        public ZoneVM(ZoneModel zone)
+        {
+            _id = zone.Id;
+            _identifiers = zone.Identifiers;
+            _locations = zone.Locations;
         }
     }
 }

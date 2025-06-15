@@ -3,7 +3,7 @@
 namespace WS.Campaigns.Items.Armour
 {
     /*
-     * Class for storing an armour.
+     * Armour model.
      */
     [Table("armour")]
     public class ArmourModel : Item

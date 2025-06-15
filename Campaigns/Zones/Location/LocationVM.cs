@@ -1,20 +1,31 @@
-﻿using SQLite;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace WS.Campaigns.Zones.Location
 {
     /*
-     * Class for storing a location.
+     * Location view model.
      */
-    [Table("location")]
-    public class LocationModel
+    public class LocationVM : ObservableObject
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-        public Identifiers Identifiers { get; set; }
+        private int _id;
+        private Identifiers _identifiers;
 
-        public string GetName()
+        public int ID
         {
-            return Identifiers.Name;
+            get => _id;
+            set => SetProperty(ref _id, value);
+        }
+
+        public Identifiers Identifiers
+        {
+            get => _identifiers;
+            set => SetProperty(ref _identifiers, value);
+        }
+
+        public LocationVM(LocationModel location)
+        {
+            _id = location.Id;
+            _identifiers = location.Identifiers;
         }
     }
 }
