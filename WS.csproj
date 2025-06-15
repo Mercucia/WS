@@ -88,4 +88,10 @@
 	  <Folder Include="Campaign\Zones\V\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiXaml Update="Campaigns\Characters\Action\ActionView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

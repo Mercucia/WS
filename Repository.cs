@@ -4,36 +4,53 @@ using WS.Campaigns.Characters.Action;
 using WS.Campaigns.Characters.BonusAction;
 using WS.Campaigns.Characters.Character;
 using WS.Campaigns.Characters.Stat;
-using WS.Campaigns.Items;
+using WS.Campaigns.Items.Armour;
+using WS.Campaigns.Items.Consumable;
+using WS.Campaigns.Items.Tool;
+using WS.Campaigns.Items.Trinket;
+using WS.Campaigns.Items.Weapon;
 
 <<<<<<< TODO: Unmerged change from project 'WS (net9.0-maccatalyst)', Before:
-using WS.Campaigns.Zones;
 =======
-using WS.Campaigns.Items.Armour;
-using WS.Campaigns.Zones;
->>>>>>> After
-
-<<<<<<< TODO: Unmerged change from project 'WS (net9.0-android)', Before:
-using WS.Campaigns.Zones;
-=======
-using WS.Campaigns.Items.Armour;
-using WS.Campaigns.Items.Armour.Armour;
-using WS.Campaigns.Zones;
+using WS.Campaigns.Zones.Location;
 >>>>>>> After
 
 <<<<<<< TODO: Unmerged change from project 'WS (net9.0-windows10.0.19041.0)', Before:
-using WS.Campaigns.Zones;
 =======
-using WS.Campaigns.Items.Armour;
-using WS.Campaigns.Items.Armour.Armour;
-using WS.Campaigns.Items.Armour.Armour.Armour;
-using WS.Campaigns.Zones;
+using WS.Campaigns.Zones.Location;
+using WS.Campaigns.Zones.Location.Location;
+using WS.Campaigns.Zones.Location.Location.Location;
 >>>>>>> After
-using WS.Campaigns.Items.Armour;
-using WS.Campaigns.Items.Armour.Armour;
-using WS.Campaigns.Items.Armour.Armour.Armour;
-using WS.Campaigns.Items.Armour.Armour.Armour.Armour;
-using WS.Campaigns.Zones;
+
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-android)', Before:
+=======
+using WS.Campaigns.Zones.Location;
+using WS.Campaigns.Zones.Location.Location;
+>>>>>>> After
+using WS.Campaigns.Zones.Location.LocationModel;
+using WS.Campaigns.Zones.Location.LocationModel.Location;
+using WS.Campaigns.Zones.Location.LocationModel.Location.Location;
+
+
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-maccatalyst)', Before:
+=======
+using WS.Campaigns.Zones.Zone;
+>>>>>>> After
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-android)', Before:
+=======
+using WS.Campaigns.Zones.Zone;
+using WS.Campaigns.Zones.Zone.Zone;
+>>>>>>> After
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-windows10.0.19041.0)', Before:
+=======
+using WS.Campaigns.Zones.Zone;
+using WS.Campaigns.Zones.Zone.Zone;
+using WS.Campaigns.Zones.Zone.Zone.Zone;
+>>>>>>> After
+using WS.Campaigns.Zones.Zone;
+using WS.Campaigns.Zones.Zone.ZoneModel;
+using WS.Campaigns.Zones.Zone.ZoneModel.Zone;
+using WS.Campaigns.Zones.Zone.ZoneModel.Zone.Zone;
 
 namespace WS
 {
@@ -55,18 +72,42 @@ namespace WS
 
             conn = new SQLiteAsyncConnection(_dbPath);
             await conn.CreateTableAsync<Campaign>();
-            await conn.CreateTableAsync<Zone>();
+            await conn.CreateTableAsync<ZoneModel>();
+
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-maccatalyst)', Before:
             await conn.CreateTableAsync<Campaigns.Zones.Location>();
+            await conn.CreateTableAsync<Campaigns.Zones.Map>();
+=======
+            await conn.CreateTableAsync<Campaigns.Zones.Location.Location>();
+            await conn.CreateTableAsync<Campaigns.Zones.Map>();
+>>>>>>> After
+
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-windows10.0.19041.0)', Before:
+            await conn.CreateTableAsync<Campaigns.Zones.Location>();
+            await conn.CreateTableAsync<Campaigns.Zones.Map>();
+=======
+            await conn.CreateTableAsync<Campaigns.Zones.Location.Location.Location.Location>();
+            await conn.CreateTableAsync<Campaigns.Zones.Map>();
+>>>>>>> After
+
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-android)', Before:
+            await conn.CreateTableAsync<Campaigns.Zones.Location>();
+            await conn.CreateTableAsync<Campaigns.Zones.Map>();
+=======
+            await conn.CreateTableAsync<Campaigns.Zones.Location.Location.Location>();
+            await conn.CreateTableAsync<Campaigns.Zones.Map>();
+>>>>>>> After
+            await conn.CreateTableAsync<Campaigns.Zones.Location.LocationModel.Location.Location.Location>();
             await conn.CreateTableAsync<Campaigns.Zones.Map>();
             await conn.CreateTableAsync<CharacterModel>();
             await conn.CreateTableAsync<StatModel>();
             await conn.CreateTableAsync<ActionModel>();
             await conn.CreateTableAsync<BonusActionModel>();
-            await conn.CreateTableAsync<Armour>();
-            await conn.CreateTableAsync<Consumable>();
-            await conn.CreateTableAsync<Tool>();
-            await conn.CreateTableAsync<Trinket>();
-            await conn.CreateTableAsync<Weapon>();
+            await conn.CreateTableAsync<ArmourModel>();
+            await conn.CreateTableAsync<ConsumableModel>();
+            await conn.CreateTableAsync<ToolModel>();
+            await conn.CreateTableAsync<TrinketModel>();
+            await conn.CreateTableAsync<WeaponModel>();
         }
 
         public Repository(string dbPath)
@@ -153,7 +194,7 @@ namespace WS
                     throw new Exception("A valid zone name must be entered.");
 
                 result = await conn.InsertAsync(
-                    new Zone { Identifiers = new Identifiers() { Name = name, Description = description } });
+                    new ZoneModel { Identifiers = new Identifiers() { Name = name, Description = description } });
 
                 StatusMessage = string.Format("{0} record(s) added (Name: {1})", result, name);
             }
@@ -166,19 +207,19 @@ namespace WS
         /*
          * Get a list of all zones.
          */
-        public async Task<List<Zone>> GetAllZones()
+        public async Task<List<ZoneModel>> GetAllZones()
         {
             try
             {
                 await Init();
-                return await conn.Table<Zone>().ToListAsync();
+                return await conn.Table<ZoneModel>().ToListAsync();
             }
             catch (Exception ex)
             {
                 StatusMessage = string.Format("Data retrieval failed. {0}", ex.Message);
             }
 
-            return new List<Zone>();
+            return new List<ZoneModel>();
         }
 
         /*
@@ -191,7 +232,7 @@ namespace WS
             {
                 await Init();
 
-                Zone zone = await conn.Table<Zone>().Where(i => i.Id == id).FirstOrDefaultAsync();
+                ZoneModel zone = await conn.Table<ZoneModel>().Where(i => i.Id == id).FirstOrDefaultAsync();
                 string name = zone.GetName();
 
                 result = await conn.DeleteAsync(zone);
@@ -231,19 +272,91 @@ namespace WS
         /*
          * Get a list of all locations.
          */
+
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-windows10.0.19041.0)', Before:
         public async Task<List<Campaigns.Zones.Location>> GetAllLocations()
+        {
+=======
+        public async Task<List<Campaigns.Zones.Location.Location.Location.Location>> GetAllLocations()
+        {
+>>>>>>> After
+
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-android)', Before:
+        public async Task<List<Campaigns.Zones.Location>> GetAllLocations()
+        {
+=======
+        public async Task<List<Campaigns.Zones.Location.Location.Location>> GetAllLocations()
+        {
+>>>>>>> After
+
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-maccatalyst)', Before:
+        public async Task<List<Campaigns.Zones.Location>> GetAllLocations()
+        {
+=======
+        public async Task<List<Campaigns.Zones.Location.Location>> GetAllLocations()
+        {
+>>>>>>> After
+        public async Task<List<Campaigns.Zones.Location.LocationModel.Location.Location.Location>> GetAllLocations()
         {
             try
             {
                 await Init();
+
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-android)', Before:
                 return await conn.Table<Campaigns.Zones.Location>().ToListAsync();
+            }
+=======
+                return await conn.Table<Campaigns.Zones.Location.Location.Location>().ToListAsync();
+            }
+>>>>>>> After
+
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-maccatalyst)', Before:
+                return await conn.Table<Campaigns.Zones.Location>().ToListAsync();
+            }
+=======
+                return await conn.Table<Campaigns.Zones.Location.Location>().ToListAsync();
+            }
+>>>>>>> After
+
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-windows10.0.19041.0)', Before:
+                return await conn.Table<Campaigns.Zones.Location>().ToListAsync();
+            }
+=======
+                return await conn.Table<Campaigns.Zones.Location.Location.Location.Location>().ToListAsync();
+            }
+>>>>>>> After
+                return await conn.Table<Campaigns.Zones.Location.Location.Location.Location.Location>().ToListAsync();
             }
             catch (Exception ex)
             {
                 StatusMessage = string.Format("Data retrieval failed. {0}", ex.Message);
             }
 
+
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-windows10.0.19041.0)', Before:
             return new List<Campaigns.Zones.Location>();
+        }
+=======
+            return new List<Campaigns.Zones.Location.Location.Location.Location>();
+        }
+>>>>>>> After
+
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-android)', Before:
+            return new List<Campaigns.Zones.Location>();
+        }
+=======
+            return new List<Campaigns.Zones.Location.Location.Location>();
+        }
+>>>>>>> After
+
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-maccatalyst)', Before:
+            return new List<Campaigns.Zones.Location>();
+        }
+=======
+            return new List<Campaigns.Zones.Location.Location>();
+        }
+>>>>>>> After
+            return new List<Campaigns.Zones.Location.Location.Location.Location.Location>();
         }
 
         /*
@@ -256,7 +369,31 @@ namespace WS
             {
                 await Init();
 
+
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-android)', Before:
                 Campaigns.Zones.Location location = await conn.Table<Campaigns.Zones.Location>().Where(i => i.Id == id).FirstOrDefaultAsync();
+                string name = location.GetName();
+=======
+                Campaigns.Zones.Location.Location.Location location = await conn.Table<Campaigns.Zones.Location.Location.Location>().Where(i => i.Id == id).FirstOrDefaultAsync();
+                string name = location.GetName();
+>>>>>>> After
+
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-maccatalyst)', Before:
+                Campaigns.Zones.Location location = await conn.Table<Campaigns.Zones.Location>().Where(i => i.Id == id).FirstOrDefaultAsync();
+                string name = location.GetName();
+=======
+                Campaigns.Zones.Location.Location location = await conn.Table<Campaigns.Zones.Location.Location>().Where(i => i.Id == id).FirstOrDefaultAsync();
+                string name = location.GetName();
+>>>>>>> After
+
+<<<<<<< TODO: Unmerged change from project 'WS (net9.0-windows10.0.19041.0)', Before:
+                Campaigns.Zones.Location location = await conn.Table<Campaigns.Zones.Location>().Where(i => i.Id == id).FirstOrDefaultAsync();
+                string name = location.GetName();
+=======
+                Campaigns.Zones.Location.Location.Location.Location location = await conn.Table<Campaigns.Zones.Location.Location.Location.Location>().Where(i => i.Id == id).FirstOrDefaultAsync();
+                string name = location.GetName();
+>>>>>>> After
+                Campaigns.Zones.Location.Location.Location.Location.Location location = await conn.Table<Campaigns.Zones.Location.Location.Location.Location.Location>().Where(i => i.Id == id).FirstOrDefaultAsync();
                 string name = location.GetName();
 
                 result = await conn.DeleteAsync(location);
@@ -413,7 +550,7 @@ namespace WS
                     throw new Exception("A valid action name must be entered.");
 
                 result = await conn.InsertAsync(
-                    new Campaigns.Characters.ActionModel { Identifiers = new Identifiers() { Name = name, Description = description } });
+                    new ActionModel { Identifiers = new Identifiers() { Name = name, Description = description } });
 
                 StatusMessage = string.Format("{0} record(s) added (Name: {1})", result, name);
             }
@@ -543,7 +680,7 @@ namespace WS
                     throw new Exception("A valid armour name must be entered.");
 
                 result = await conn.InsertAsync(
-                    new Armour { Identifiers = new Identifiers() { Name = name, Description = description } });
+                    new ArmourModel { Identifiers = new Identifiers() { Name = name, Description = description } });
 
                 StatusMessage = string.Format("{0} record(s) added (Name: {1})", result, name);
             }
@@ -556,19 +693,19 @@ namespace WS
         /*
          * Get a list of all armour.
          */
-        public async Task<List<Armour>> GetAllArmour()
+        public async Task<List<ArmourModel>> GetAllArmour()
         {
             try
             {
                 await Init();
-                return await conn.Table<Armour>().ToListAsync();
+                return await conn.Table<ArmourModel>().ToListAsync();
             }
             catch (Exception ex)
             {
                 StatusMessage = string.Format("Data retrieval failed. {0}", ex.Message);
             }
 
-            return new List<Armour>();
+            return new List<ArmourModel>();
         }
 
         /*
@@ -581,7 +718,7 @@ namespace WS
             {
                 await Init();
 
-                Armour armour = await conn.Table<Armour>().Where(i => i.Id == id).FirstOrDefaultAsync();
+                ArmourModel armour = await conn.Table<ArmourModel>().Where(i => i.Id == id).FirstOrDefaultAsync();
                 string name = armour.GetName();
 
                 result = await conn.DeleteAsync(armour);
@@ -608,7 +745,7 @@ namespace WS
                     throw new Exception("A valid consumable name must be entered.");
 
                 result = await conn.InsertAsync(
-                    new Consumable { Identifiers = new Identifiers() { Name = name, Description = description } });
+                    new ConsumableModel { Identifiers = new Identifiers() { Name = name, Description = description } });
 
                 StatusMessage = string.Format("{0} record(s) added (Name: {1})", result, name);
             }
@@ -621,19 +758,19 @@ namespace WS
         /*
          * Get a list of all consumables.
          */
-        public async Task<List<Consumable>> GetAllConsumables()
+        public async Task<List<ConsumableModel>> GetAllConsumables()
         {
             try
             {
                 await Init();
-                return await conn.Table<Consumable>().ToListAsync();
+                return await conn.Table<ConsumableModel>().ToListAsync();
             }
             catch (Exception ex)
             {
                 StatusMessage = string.Format("Data retrieval failed. {0}", ex.Message);
             }
 
-            return new List<Consumable>();
+            return new List<ConsumableModel>();
         }
 
         /*
@@ -646,7 +783,7 @@ namespace WS
             {
                 await Init();
 
-                Consumable consumable = await conn.Table<Consumable>().Where(i => i.Id == id).FirstOrDefaultAsync();
+                ConsumableModel consumable = await conn.Table<ConsumableModel>().Where(i => i.Id == id).FirstOrDefaultAsync();
                 string name = consumable.GetName();
 
                 result = await conn.DeleteAsync(consumable);
@@ -673,7 +810,7 @@ namespace WS
                     throw new Exception("A valid tool name must be entered.");
 
                 result = await conn.InsertAsync(
-                    new Tool { Identifiers = new Identifiers() { Name = name, Description = description } });
+                    new ToolModel { Identifiers = new Identifiers() { Name = name, Description = description } });
 
                 StatusMessage = string.Format("{0} record(s) added (Name: {1})", result, name);
             }
@@ -686,19 +823,19 @@ namespace WS
         /*
          * Get a list of all tools.
          */
-        public async Task<List<Tool>> GetAllTools()
+        public async Task<List<ToolModel>> GetAllTools()
         {
             try
             {
                 await Init();
-                return await conn.Table<Tool>().ToListAsync();
+                return await conn.Table<ToolModel>().ToListAsync();
             }
             catch (Exception ex)
             {
                 StatusMessage = string.Format("Data retrieval failed. {0}", ex.Message);
             }
 
-            return new List<Tool>();
+            return new List<ToolModel>();
         }
 
         /*
@@ -711,7 +848,7 @@ namespace WS
             {
                 await Init();
 
-                Tool tool = await conn.Table<Tool>().Where(i => i.Id == id).FirstOrDefaultAsync();
+                ToolModel tool = await conn.Table<ToolModel>().Where(i => i.Id == id).FirstOrDefaultAsync();
                 string name = tool.GetName();
 
                 result = await conn.DeleteAsync(tool);
@@ -738,7 +875,7 @@ namespace WS
                     throw new Exception("A valid trinket name must be entered.");
 
                 result = await conn.InsertAsync(
-                    new Trinket { Identifiers = new Identifiers() { Name = name, Description = description } });
+                    new TrinketModel { Identifiers = new Identifiers() { Name = name, Description = description } });
 
                 StatusMessage = string.Format("{0} record(s) added (Name: {1})", result, name);
             }
@@ -751,19 +888,19 @@ namespace WS
         /*
          * Get a list of all trinkets.
          */
-        public async Task<List<Trinket>> GetAllTrinkets()
+        public async Task<List<TrinketModel>> GetAllTrinkets()
         {
             try
             {
                 await Init();
-                return await conn.Table<Trinket>().ToListAsync();
+                return await conn.Table<TrinketModel>().ToListAsync();
             }
             catch (Exception ex)
             {
                 StatusMessage = string.Format("Data retrieval failed. {0}", ex.Message);
             }
 
-            return new List<Trinket>();
+            return new List<TrinketModel>();
         }
 
         /*
@@ -776,7 +913,7 @@ namespace WS
             {
                 await Init();
 
-                Trinket trinket = await conn.Table<Trinket>().Where(i => i.Id == id).FirstOrDefaultAsync();
+                TrinketModel trinket = await conn.Table<TrinketModel>().Where(i => i.Id == id).FirstOrDefaultAsync();
                 string name = trinket.GetName();
 
                 result = await conn.DeleteAsync(trinket);
@@ -803,7 +940,7 @@ namespace WS
                     throw new Exception("A valid weapon name must be entered.");
 
                 result = await conn.InsertAsync(
-                    new Weapon { Identifiers = new Identifiers() { Name = name, Description = description } });
+                    new WeaponModel { Identifiers = new Identifiers() { Name = name, Description = description } });
 
                 StatusMessage = string.Format("{0} record(s) added (Name: {1})", result, name);
             }
@@ -816,19 +953,19 @@ namespace WS
         /*
          * Get a list of all weapons.
          */
-        public async Task<List<Weapon>> GetAllWeapons()
+        public async Task<List<WeaponModel>> GetAllWeapons()
         {
             try
             {
                 await Init();
-                return await conn.Table<Weapon>().ToListAsync();
+                return await conn.Table<WeaponModel>().ToListAsync();
             }
             catch (Exception ex)
             {
                 StatusMessage = string.Format("Data retrieval failed. {0}", ex.Message);
             }
 
-            return new List<Weapon>();
+            return new List<WeaponModel>();
         }
 
         /*
@@ -841,7 +978,7 @@ namespace WS
             {
                 await Init();
 
-                Weapon weapon = await conn.Table<Weapon>().Where(i => i.Id == id).FirstOrDefaultAsync();
+                WeaponModel weapon = await conn.Table<WeaponModel>().Where(i => i.Id == id).FirstOrDefaultAsync();
                 string name = weapon.GetName();
 
                 result = await conn.DeleteAsync(weapon);

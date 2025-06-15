@@ -1,16 +1,15 @@
 ﻿using SQLite;
 
-namespace WS.Campaigns.Zones
+namespace WS.Campaigns.Items.Armour
 {
     /*
-     * Class for storing a location.
+     * Class for storing an armour.
      */
-    [Table("location")]
-    public class Location
+    [Table("armour")]
+    public class ArmourModel : Item
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public Identifiers Identifiers { get; set; }
 
         public string GetName()
         {

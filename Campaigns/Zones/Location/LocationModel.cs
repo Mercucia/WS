@@ -1,17 +1,16 @@
 ﻿using SQLite;
 
-namespace WS.Campaigns.Zones
+namespace WS.Campaigns.Zones.Location
 {
     /*
-     * Class for storing a Zone.
+     * Class for storing a location.
      */
-    [Table("zone")]
-    public class Zone
+    [Table("location")]
+    public class LocationModel
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public Identifiers Identifiers { get; set; }
-        public List<Location> Locations { get; set; }
 
         public string GetName()
         {

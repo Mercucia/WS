@@ -19,6 +19,9 @@ namespace WS
     		builder.Logging.AddDebug();
 #endif
 
+            string dbPath = AccessFile.GetLocalPath("campaigns.db3");
+            builder.Services.AddSingleton<Repository>(s => ActivatorUtilities.CreateInstance<Repository>(s, dbPath));
+
             return builder.Build();
         }
     }
