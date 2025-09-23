@@ -1,5 +1,6 @@
 ﻿using SQLite;
 using WS.Campaigns;
+using WS.Campaigns.Campaign;
 using WS.Campaigns.Characters.Action;
 using WS.Campaigns.Characters.BonusAction;
 using WS.Campaigns.Characters.Character;
@@ -17,10 +18,14 @@ namespace WS
     public class Repository
     {
         string _dbPath; // DB file path
+        private SQLiteAsyncConnection conn;
 
         public string StatusMessage { get; set; }
 
-        private SQLiteAsyncConnection conn;
+        public Repository(string dbPath)
+        {
+            _dbPath = dbPath;
+        }
 
         /*
          * If no database found, initialise and create tables.
@@ -44,11 +49,6 @@ namespace WS
             await conn.CreateTableAsync<ToolModel>();
             await conn.CreateTableAsync<TrinketModel>();
             await conn.CreateTableAsync<WeaponModel>();
-        }
-
-        public Repository(string dbPath)
-        {
-            _dbPath = dbPath;
         }
 
         /*

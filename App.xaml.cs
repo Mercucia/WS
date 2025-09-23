@@ -1,15 +1,26 @@
-﻿namespace WS
+﻿using WS.Campaigns.Campaign;
+
+namespace WS
 {
     public partial class App : Application
     {
-        public App()
+        public static Repository CampaignRepo { get; private set; }
+        public static CampaignListVM? CampaignViewModel { get; private set; }
+
+        public App(Repository repo)
         {
             InitializeComponent();
+            CampaignRepo = repo;
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
+            var window = new Window(new AppShell());
+
+            CampaignViewModel = new();
+            CampaignViewModel.RefreshCampaigns().ContinueWith((s) => { });
+
+            return window;
         }
     }
 }

@@ -1,24 +1,65 @@
-﻿namespace WS
+﻿using System.Diagnostics;
+using WS.Campaigns.Campaign;
+
+namespace WS
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
         public MainPage()
         {
+            BindingContext = App.CampaignViewModel;
+
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        /*
+         * Before the page appears, get and refresh the list of campaigns.
+         */
+        protected override void OnAppearing()
         {
-            count++;
+            base.OnAppearing();
+            Dispatcher.DispatchAsync(App.CampaignViewModel.RefreshCampaigns);
+        }
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+        /*
+         * Do when the selection changes.
+         */
+        public void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            App.CampaignViewModel.SelectedCampaign = e.CurrentSelection.FirstOrDefault() as CampaignVM;
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            if (App.CampaignViewModel.SelectedCampaign != null)
+            {
+                Globals.GoToDetails();
+            }
+        }
+
+        private async void OnSaveButtonClicked(object sender, EventArgs e)
+        {
+            statusMessage.Text = "";
+
+            await App.CampaignRepo.AddNewCampaign(newCampaign.Text);
+            statusMessage.Text = App.CampaignRepo.StatusMessage;
+
+            Debug.WriteLine("saved entry");
+
+            Globals.GoToDetails();
+        }
+
+        /*
+         * Navigate to the AddNewClient page.
+         */
+        private async void OnAddNewCampaignButtonClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"addnewcampaign");
+        }
+
+        /*
+         * Navigate to the ClientList page.
+         */
+        private async void OnGetAllCampaignsButtonClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"campaignlist");
         }
     }
 

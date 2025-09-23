@@ -1,4 +1,5 @@
 ﻿using WS.Campaigns;
+using WS.Campaigns.Campaign;
 
 namespace WS.Hub
 {

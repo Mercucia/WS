@@ -60,32 +60,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Campaign\**" />
+	  <Compile Remove="Campaign\**" />
+	  <EmbeddedResource Remove="Campaign\**" />
+	  <MauiCss Remove="Campaign\**" />
+	  <MauiXaml Remove="Campaign\**" />
+	  <None Remove="Campaign\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Campaign\Actions\M\" />
-	  <Folder Include="Campaign\Actions\VM\" />
-	  <Folder Include="Campaign\Actions\V\" />
-	  <Folder Include="Campaign\Characters\M\" />
-	  <Folder Include="Campaign\Characters\VM\" />
-	  <Folder Include="Campaign\Characters\V\" />
-	  <Folder Include="Campaign\Events\M\" />
-	  <Folder Include="Campaign\Events\VM\" />
-	  <Folder Include="Campaign\Events\V\" />
-	  <Folder Include="Campaign\Items\M\" />
-	  <Folder Include="Campaign\Items\VM\" />
-	  <Folder Include="Campaign\Items\V\" />
-	  <Folder Include="Campaign\" />
-	  <Folder Include="Campaign\Stats\M\" />
-	  <Folder Include="Campaign\Stats\VM\" />
-	  <Folder Include="Campaign\Stats\V\" />
-	  <Folder Include="Campaign\Zones\M\" />
-	  <Folder Include="Campaign\Zones\VM\" />
-	  <Folder Include="Campaign\Zones\V\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -95,6 +82,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Campaigns\Campaign\Pages\CampaignView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Campaigns\Characters\Action\Pages\ActionListView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

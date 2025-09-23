@@ -3,7 +3,7 @@ using WS.Campaigns.Characters.Character;
 using WS.Campaigns.Items;
 using WS.Campaigns.Zones.Zone;
 
-namespace WS.Campaigns
+namespace WS.Campaigns.Campaign
 {
     /*
      * CampaignModel view model.
