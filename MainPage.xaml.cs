@@ -10,6 +10,8 @@ namespace WS
             BindingContext = App.CampaignViewModel;
 
             InitializeComponent();
+
+            OnAddNewCampaignButtonClicked.Clicked += async (s, e) => await Save();
         }
 
         /*
@@ -34,7 +36,7 @@ namespace WS
             }
         }
 
-        private async void OnSaveButtonClicked(object sender, EventArgs e)
+        private async Task Save()
         {
             statusMessage.Text = "";
 
@@ -44,22 +46,6 @@ namespace WS
             Debug.WriteLine("saved entry");
 
             Globals.GoToDetails();
-        }
-
-        /*
-         * Navigate to the AddNewClient page.
-         */
-        private async void OnAddNewCampaignButtonClicked(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync($"addnewcampaign");
-        }
-
-        /*
-         * Navigate to the ClientList page.
-         */
-        private async void OnGetAllCampaignsButtonClicked(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync($"campaignlist");
         }
     }
 

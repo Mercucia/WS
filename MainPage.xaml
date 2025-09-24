@@ -13,25 +13,21 @@
 
         <Entry x:Name="newCampaign"
            Placeholder="Enter campaign name:" />
-
-        <Button Text="Add new campaign"
-            Grid.Row="1"
-            Clicked="OnAddNewCampaignButtonClicked" />
+        
+        <Button x:Name="OnAddNewCampaignButtonClicked"
+            Text="Add new campaign"
+                Grid.Row="1"/>
 
         <Label x:Name="statusMessage"
            TextColor="{StaticResource Primary}"
            Grid.Row="2" />
-
-        <Button Text="Browse all campaigns"
-            Grid.Row="3"
-            Clicked="OnGetAllCampaignsButtonClicked" />
 
         <CollectionView ItemsSource="{Binding Campaigns}"
                         SelectionMode="Single"
                         SelectedItem="{Binding SelectedCampaign, Mode=OneWayToSource}"
                         SelectionChanged="OnCollectionViewSelectionChanged"
                         Margin="10"
-                        Grid.Row="1" >
+                        Grid.Row="3" >
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="vm:CampaignVM">
                     <HorizontalStackLayout>

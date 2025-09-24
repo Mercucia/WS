@@ -10,6 +10,7 @@ namespace WS
 
             Routing.RegisterRoute("campaign", typeof(MainPage));
             Routing.RegisterRoute("campaign/view", typeof(CampaignView));
+            Routing.RegisterRoute("campaign/add", typeof(CampaignView));
         }
     }
 }
